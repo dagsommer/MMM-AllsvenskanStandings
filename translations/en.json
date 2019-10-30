@@ -1,14 +1,33 @@
+
 {
-	"LOADING": "Loading...",
-	"POSITION": "",
-	"TEAM_NAME": "Club",
-	"MATCHES_PLAYED": "Pl",
-	"WINS": "W",
-	"DRAWS": "D",
-	"LOSSES": "L",
+	"LOADING": "Laster...",
+	"POSITION": "#",
+	"TEAM_NAME": "Klubb",
+	"MATCHES_PLAYED": "K",
+	"WINS": "S",
+	"DRAWS": "U",
+	"DRAW_WINS": "US",
+	"DRAW_LOSSES": "UT",
+	"LOSSES": "T",
 	"GOALS_FOR": "F",
 	"GOALS_AGAINST": "A",
-	"GOAL_DIFFERENCE": "GD",
+	"GOAL_DIFFERENCE": "+/-",
 	"GOALS_FOR_AND_AGAINST": "+/-",
-	"POINTS": "P"
+	"POINTS": "P",
+	"eh": {
+		"LOADING": "Loading...",
+		"POSITION": "",
+		"TEAM_NAME": "Club",
+		"MATCHES_PLAYED": "Pl",
+		"WINS": "W",
+		"DRAWS": "D",
+		"DRAW_WINS": "DV",
+		"DRAW_LOSSES": "DL",
+		"LOSSES": "L",
+		"GOALS_FOR": "F",
+		"GOALS_AGAINST": "A",
+		"GOAL_DIFFERENCE": "GD",
+		"GOALS_FOR_AND_AGAINST": "+/-",
+		"POINTS": "P"
+	}
 }

@@ -139,12 +139,30 @@ module.exports = NodeHelper.create({
 
 	// Gets Allsvenskan table from Swedish TextTV API and scrapes it into an array of team data.
 	// The array is then sent to the client (to MMM-AllsvenskanStandings.js).
-	getStandings: function() {
+	getStandings: function(seasonID, tournamentID) {
 		request({
-			url: 'http://api.texttv.nu/api/get/343?app=magicmirror',
+			url: 'https://nif2json.1977.no/api/seasons/' + seasonID + '/tournaments/' + tournamentID + '/ranking.json',
 			method: 'GET'
 		}, (error, response, body) => {
 			if (!error && response.statusCode == 200) {
+				var teams = []
+				for (var i in body.data) {
+					var bd = body.data
+					var teamData = {position: position,
+						name: bd.team,
+						played: bd.matches,
+						won: bd.win,
+						draw: bd.draw || "N/A",
+						draw_win: bd.draw_win || "N/A",
+						draw_loss: bd.draw_loss || "N/A",
+						lost: bd.loss,
+						goalsFor: bd.goals.substring(0,3),
+						goalsAgainst: bd.goals.substring(bd.goals.length-4,bd.goals.length-1),
+						goalDifference: bd.diff,
+						points: bd.points
+					}
+					teams.push(teamData)
+				}
 				var html = JSON.parse(body)[0].content[0];
 				var teams = this.scrape(html);
 				this.sendSocketNotification('STANDINGS_RESULT', teams);
@@ -156,7 +174,7 @@ module.exports = NodeHelper.create({
 	// Client sends a notification when it wants download new standings.
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === 'GET_STANDINGS') {
-			this.getStandings();
+			this.getStandings(payload.seasonID, payload.tournamentID);
 		}
 	}
 

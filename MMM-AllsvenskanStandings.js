@@ -11,13 +11,16 @@ Module.register('MMM-AllsvenskanStandings', {
 		showPosition: true,
 		showMatchesPlayed: true,
 		showWins: true,
-		showDraws: true,
+		showDraws: false,
+		showDrawWinLosses: true,
 		showLosses: true,
 		showGoalsFor: false,
 		showGoalsAgainst: false,
-		showGoalDifference: false,
-		showGoalsForAndAgainst: true,
-		showPoints: true
+		showGoalDifference: true,
+		showGoalsForAndAgainst: false,
+		showPoints: true,
+		seasonID: "200868",
+		tournamentID: "391939",
 	},
 
 	getStyles: function() {
@@ -27,7 +30,8 @@ Module.register('MMM-AllsvenskanStandings', {
 	getTranslations: function () {
 		return {
 			en: "translations/en.json",
-			sv: "translations/sv.json"
+			sv: "translations/sv.json",
+			no: "translations/no.json"
 		}
 	},
 
@@ -61,6 +65,8 @@ Module.register('MMM-AllsvenskanStandings', {
 		this.createTableCell(headerRow, this.translate('MATCHES_PLAYED'), this.config.showMatchesPlayed);
 		this.createTableCell(headerRow, this.translate('WINS'), this.config.showWins);
 		this.createTableCell(headerRow, this.translate('DRAWS'), this.config.showDraws);
+		this.createTableCell(headerRow, this.translate('DRAW_WINS'), this.config.showDrawWinLosses);
+		this.createTableCell(headerRow, this.translate('DRAW_LOSSES'), this.config.showDrawWinLosses);
 		this.createTableCell(headerRow, this.translate('LOSSES'), this.config.showLosses);
 		this.createTableCell(headerRow, this.translate('GOALS_FOR'), this.config.showGoalsFor);
 		this.createTableCell(headerRow, this.translate('GOALS_AGAINST'), this.config.showGoalsAgainst);
@@ -82,6 +88,8 @@ Module.register('MMM-AllsvenskanStandings', {
 			this.createTableCell(row, team.played, this.config.showMatchesPlayed);
 			this.createTableCell(row, team.won, this.config.showWins);
 			this.createTableCell(row, team.drawn, this.config.showDraws);
+			this.createTableCell(row, team.draw_win, this.config.showDrawWinLosses);
+			this.createTableCell(row, team.drawn_loss, this.config.showDrawWinLosses);
 			this.createTableCell(row, team.lost, this.config.showLosses);
 			this.createTableCell(row, team.goalsFor, this.config.showGoalsFor);
 			this.createTableCell(row, team.goalsAgainst, this.config.showGoalsAgainst);
@@ -100,7 +108,7 @@ Module.register('MMM-AllsvenskanStandings', {
 		this.teams = [];
 
 		// Tell node_helper to load standings at startup.
-		this.sendSocketNotification('GET_STANDINGS', { });
+		this.sendSocketNotification('GET_STANDINGS', {seasonID: this.seasonID, tournamentID: this.tournamentID });
 
 		// Make sure standings are reloaded every 10 minutes.
 		var self = this;

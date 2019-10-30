@@ -1,0 +1,16 @@
+{
+	"LOADING": "Laster...",
+	"POSITION": "#",
+	"TEAM_NAME": "Klubb",
+	"MATCHES_PLAYED": "K",
+	"WINS": "S",
+	"DRAWS": "U",
+	"DRAW_WINS": "US",
+	"DRAW_LOSSES": "UT",
+	"LOSSES": "T",
+	"GOALS_FOR": "F",
+	"GOALS_AGAINST": "A",
+	"GOAL_DIFFERENCE": "+/-",
+	"GOALS_FOR_AND_AGAINST": "+/-",
+	"POINTS": "P"
+}
