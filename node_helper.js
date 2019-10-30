@@ -162,9 +162,9 @@ module.exports = NodeHelper.create({
 						points: bd.points
 					}
 					teams.push(teamData)
-				}
+				}/* 
 				var html = JSON.parse(body)[0].content[0];
-				var teams = this.scrape(html);
+				var teams = this.scrape(html); */
 				this.sendSocketNotification('STANDINGS_RESULT', teams);
 			}
 		});
